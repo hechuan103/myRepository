@@ -1,0 +1,15 @@
+.icon-touxiang{display:inline-block;color:#A9B7B7;font-size: 35px;}
+.nav-user{position:absolute; top: 25px; right:0; margin-right:15px;}
+.nav-user span, 
+.nav-user .unlogin, 
+.out-login,
+.avatar,
+.avatar *,
+.nav-user .nav{display:inline-block; vertical-align: middle; *display: inline; *zoom:1;}
+.nav-user .unlogin{margin-right: 10px; margin-top: 8px;}
+.nav-user span{position: relative;}
+.nav-user span a{padding:0 10px; color:#A9B7B7}
+.nav-user span a:hover{color:#fff;}
+.nav-user .nav{position:relative; top: -5px; left: auto; right: 0; margin-left: 30px;}
+.nav-user .nav a{padding: 0 10px;}
+.nav-user .unlogin i{margin-bottom: 12px;}
