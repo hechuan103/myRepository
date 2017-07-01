@@ -3,6 +3,12 @@ package com.os.base.vo;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
+
+
+
+
 public class UserInfo implements Serializable {
     private Integer id;
 
@@ -18,6 +24,7 @@ public class UserInfo implements Serializable {
 
     private String address;
 
+    
     private Date creatTm;
 
     private static final long serialVersionUID = 1L;
@@ -77,16 +84,20 @@ public class UserInfo implements Serializable {
     public void setAddress(String address) {
         this.address = address == null ? null : address.trim();
     }
-
+    @JSONField(format = "yyyy-MM-dd hh:mm:ss")
     public Date getCreatTm() {
         return creatTm;
     }
 
+   
     public void setCreatTm(Date creatTm) {
         this.creatTm = creatTm;
     }
+    
+    
+   
 
-    @Override
+	@Override
     public boolean equals(Object that) {
         if (this == that) {
             return true;

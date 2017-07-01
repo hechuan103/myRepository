@@ -29,37 +29,60 @@
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/WEB-INF/view/" p:suffix=".jsp" />
     
         <!-- 在实际开发中通常都需配置 mvc:annotation-driven标签,这个标签是开启注解 -->  
-        <mvc:annotation-driven></mvc:annotation-driven>  
+       <!--  <mvc:annotation-driven></mvc:annotation-driven>   -->
+<mvc:annotation-driven>  
+    <!-- 处理responseBody 里面日期类型 -->  
+        <mvc:message-converters>  
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">  
+                <property name="objectMapper">  
+                    <bean class="com.fasterxml.jackson.databind.ObjectMapper">  
+                        <property name="dateFormat">  
+                            <bean class="java.text.SimpleDateFormat">  
+                                <constructor-arg type="java.lang.String" value="yyyy-MM-dd HH:mm:ss" />  
+                            </bean>  
+                        </property>  
+                    </bean>  
+                </property>  
+            </bean>  
+        </mvc:message-converters>  
+    </mvc:annotation-driven>         
+        
+        
         <!-- 拦截器 -->  
         <mvc:interceptors>  
-            <!-- 多个拦截器，顺序执行 -->  
-            <mvc:interceptor>  
-                <mvc:mapping path="/**"/>  
-                <bean class="com.os.interceptor.SposInterceptor"></bean>  
-            </mvc:interceptor>  
-        </mvc:interceptors>   
-        
-        
+            <!-- 多个拦截器，顺序执行 -->
+            <mvc:interceptor>
+                <mvc:mapping path="/**"/>
+                <mvc:exclude-mapping path="eleme/dataPush.do" />
+                <bean class="com.os.interceptor.SposInterceptor"></bean>
+
+            </mvc:interceptor>
+
+        </mvc:interceptors>
+                   
+             
   <!-- 用于将对象转换为 JSON  -->  
- <bean id="stringConverter"  
+   <bean id="stringConverter"  
     class="org.springframework.http.converter.StringHttpMessageConverter">  
     <property name="supportedMediaTypes">  
         <list>  
-            <value>text/plain;charset=UTF-8</value> 
+            <value>text/plain;charset=UTF-8</value>
+           <value>application/json;charset=UTF-8</value> 
         </list>  
     </property>  
 </bean>  
-<bean id="jsonConverter"   class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"></bean>  
 
+<bean id="jsonConverter"   class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"></bean>  
 <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">  
     <property name="messageConverters">  
         <list>  
             <ref bean="stringConverter" />  
-            <ref bean="jsonConverter" />  
+            <ref bean="jsonConverter" /> 
         </list>  
     </property>  
 </bean> 
-    
-    
+  
+
+
     
 </beans>

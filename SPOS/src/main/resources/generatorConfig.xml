@@ -40,7 +40,7 @@
 		</javaClientGenerator>
 
 		<!-- 生成表配置 -->
-		<table schema="" tableName="tb_user_info" domainObjectName="UserInfo">
+		<table schema="" tableName="tb_user_token" domainObjectName="UserToken">
 			<property name="useActualColumnNames" value="false" />
 			<property name="ignoreQualifiersAtRuntime" value="true" />
 			<property name="constructorBased" value="false" />
